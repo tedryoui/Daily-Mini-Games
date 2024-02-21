@@ -36,7 +36,7 @@ namespace DefaultNamespace.Login_Mini_Game.UI
             _dayText.SetText(stage.day.ToString());
             _obtained.SetActive(DailyHandler.Instance.Streak >= stage.day);
             _image.sprite = Player.Instance.GetCoinsIcon();
-            _coins.SetText(stage.day.ToString());
+            _coins.SetText($"x{stage.coins.ToString()}");
         }
     }
 }

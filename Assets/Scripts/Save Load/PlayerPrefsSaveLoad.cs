@@ -8,19 +8,22 @@ namespace Save_Load
         private static PlayerPrefsSaveLoad _instance;
         public static PlayerPrefsSaveLoad Current => _instance ??= new PlayerPrefsSaveLoad();
         
-        public override void Save<T>(T data)
+        public override void Save<T>(T data, string name = "")
         {
+            name = (string.IsNullOrEmpty(name) ? typeof(T).Name : name);
             var jsonData = JsonConvert.SerializeObject(data);
             
-            PlayerPrefs.SetString(typeof(T).Name, jsonData);
+            PlayerPrefs.SetString(name, jsonData);
             PlayerPrefs.Save();
         }
 
-        public override bool Load<T>(out T data)
+        public override bool Load<T>(out T data, string name = "")
         {
-            if (PlayerPrefs.HasKey(typeof(T).Name))
+            name = (string.IsNullOrEmpty(name) ? typeof(T).Name : name);
+            
+            if (PlayerPrefs.HasKey(name))
             {
-                var json = PlayerPrefs.GetString(typeof(T).Name);
+                var json = PlayerPrefs.GetString(name);
 
                 data = JsonConvert.DeserializeObject<T>(json);
                 return true;

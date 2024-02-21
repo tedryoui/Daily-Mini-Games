@@ -17,7 +17,7 @@ namespace DefaultNamespace.UI
 
         private void Update()
         {
-            _text.SetText(Player.Instance.GetCoins().ToString());
+            _text.SetText($"x{Player.Instance.GetCoins()}");
         }
     }
 }

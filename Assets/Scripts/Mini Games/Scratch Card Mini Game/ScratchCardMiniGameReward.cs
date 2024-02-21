@@ -2,6 +2,7 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Mini_Games.Scratch_Card_Mini_Game
@@ -16,6 +17,7 @@ namespace Mini_Games.Scratch_Card_Mini_Game
         [Header("Tween Settings")] 
         [SerializeField] private float _punchStrength;
         [SerializeField] private float _duration;
+
         
         private readonly string _showRewardTweenDefaultId = "ShowReward-Tween";
         

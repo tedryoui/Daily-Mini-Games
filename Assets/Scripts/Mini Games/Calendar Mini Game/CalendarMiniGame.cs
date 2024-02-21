@@ -2,6 +2,7 @@
 using DefaultNamespace.Mini_Game_Base;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace DefaultNamespace.Login_Mini_Game
 {
@@ -13,6 +14,9 @@ namespace DefaultNamespace.Login_Mini_Game
         [Header("Data presets")] 
         [SerializeField] private Stage[] _stages;
         private Stage _selectedStage;
+
+        [Header("Callback")] 
+        [Space(10)] public UnityEvent finish;
         
         private readonly string _calendarTweenDefaultId = "Calendar-Tween";
         
@@ -43,6 +47,8 @@ namespace DefaultNamespace.Login_Mini_Game
         {
             ObtainReward();
             AnimateReward();
+            
+            finish?.Invoke();
         }
 
         private void ObtainReward()
@@ -61,7 +67,7 @@ namespace DefaultNamespace.Login_Mini_Game
                 var sequence = DOTween.Sequence();
                 sequence.SetId(_calendarTweenDefaultId);
 
-                sequence.Append(_reward.ShowReward(_selectedStage.day, Player.Instance.GetCoinsIcon(), _selectedStage.coins.ToString()));
+                sequence.Append(_reward.ShowReward(_selectedStage.day, Player.Instance.GetCoinsIcon(), $"x{_selectedStage.coins}"));
 
                 sequence.Play();
             }

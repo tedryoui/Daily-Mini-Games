@@ -6,6 +6,7 @@ using DefaultNamespace.Mini_Game_Base;
 using Mini_Games.Scratch_Card_Mini_Game;
 using Unity.Android.Gradle;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace DefaultNamespace.Scratch_Card_Mini_Game
 {
@@ -18,6 +19,9 @@ namespace DefaultNamespace.Scratch_Card_Mini_Game
         [Header("Data presets")] 
         [SerializeField] private int _attempts;
         [SerializeField] private ScratchCard[] _cards;
+
+        [Header("Callbacks")] 
+        [Space(10)] public UnityEvent finish;
         
         private List<int> _startedCardIndices;
         private bool _isDrawersBlocked;
@@ -53,6 +57,7 @@ namespace DefaultNamespace.Scratch_Card_Mini_Game
         {
             _startedCardIndices.Add(index);
             _reward.ShowReward(Player.Instance.GetCoinsIcon(), _cards[index].coins);
+            finish?.Invoke();
         }
 
         private void BlockDrawers()

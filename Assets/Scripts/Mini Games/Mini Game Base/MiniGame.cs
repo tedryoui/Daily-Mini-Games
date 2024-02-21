@@ -71,12 +71,12 @@ namespace DefaultNamespace.Mini_Game_Base
         {
             var saveData = new MiniGameSaveData(this);
             
-            PlayerPrefsSaveLoad.Current.Save(saveData);
+            PlayerPrefsSaveLoad.Current.Save(saveData, GetType().Name);
         }
 
         public virtual void Load()
         {
-            var hasData = PlayerPrefsSaveLoad.Current.Load<MiniGameSaveData>(out var data);
+            var hasData = PlayerPrefsSaveLoad.Current.Load<MiniGameSaveData>(out var data, GetType().Name);
             
             if(hasData)
                 data.Insert(this);

@@ -127,7 +127,7 @@ namespace DefaultNamespace.Spin_Mini_Game
             var sequence = DOTween.Sequence();
 
             sequence.Append(_spinner.DOPunchRotation(new Vector3(0.0f, 0.0f, 1.0f), 0.5f, 10, 4));
-            sequence.Append(_reward.ShowReward(Player.Instance.GetCoinsIcon(), _stations[_selectedStationIndex].coins.ToString()));
+            sequence.Append(_reward.ShowReward(Player.Instance.GetCoinsIcon(), $"x{_stations[_selectedStationIndex].coins}"));
             
             return sequence;
         }
